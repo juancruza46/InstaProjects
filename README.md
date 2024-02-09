@@ -1,5 +1,5 @@
 InstaProjects
-  - This is a full stack MERN application, that allows users to view and share their favorite Github projects.
+  - InstaProjects, is a full stack MERN (MongoDB, Express.js, React, Node.js) application designed for users to explore and share their favorite GitHub projects. It includes features such as user authentication (login, signup, logout), category browsing, tracking post likes, saving projects to favorites, deleting saved projects, and editing or deleting user descriptions. The key tools used are MongoDB for the database, Express.js for the backend, React for the frontend, and Node.js for server-side scripting.
 
 User Stories
   - As a User, I want to be able Log in, Sign up and Log out.
