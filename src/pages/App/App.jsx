@@ -45,9 +45,9 @@ const App = () => {
       const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: new URLSearchParams({
+        body: JSON.stringify({
           email,
           password,
         }),
@@ -68,6 +68,7 @@ const App = () => {
       console.error('Error during login:', error);
     }
   };
+  
 
   const handleLogout = () => {
     setUser(null);

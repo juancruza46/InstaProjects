@@ -53,7 +53,8 @@ const AddPostPage = ({ onAddPost }) => {
 
   return (
     <div>
-      <h1>Add Post</h1>
+      <h1 className ="addh1">Add Post</h1>
+      <hr />
       <form className="add-project-form" onSubmit={handleSubmit}>
         <label htmlFor="githubLink">GitHub Link:</label>
         <input

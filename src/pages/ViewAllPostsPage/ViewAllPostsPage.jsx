@@ -60,15 +60,21 @@ const ViewAllPostsPage = () => {
   }, []);
 
   return (
-    <div className="posts-container">
-      {posts.map((post) => (
-        <PostCard
-          key={post._id}
-          post={post}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
-      ))}
+    <div className="view-all-posts-container">
+      <div className="title-container">
+        <h1>InstaProjects Feed</h1>
+        <hr />
+      </div>
+      <div className="posts-container">
+        {posts.map((post) => (
+          <PostCard
+            key={post._id}
+            post={post}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
+        ))}
+      </div>
     </div>
   );
 };

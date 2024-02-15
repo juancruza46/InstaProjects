@@ -31,7 +31,7 @@ const SignUpForm = ({ onSignUp }) => {
         // Call the onSignUp function passed from AuthPage
         await onSignUp(formData);
         // Redirect to login page after successful signup
-        navigate('/auth/login');
+        navigate('/login');
       } catch (error) {
         console.error('Error during signup:', error);
         setError('Error during signup. Please try again.');
