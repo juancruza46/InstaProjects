@@ -1,0 +1,65 @@
+
+.add-project-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .add-project-form label,
+  .add-project-form input,
+  .add-project-form textarea {
+    margin-bottom: 10px;
+  }
+  
+  .add-project-form textarea {
+    height: 100px;
+  }
+  
+  .add-project-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .add-project-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .post-card {
+    display: flex;
+    border: 1px solid gray;
+    margin: 20px;
+    padding: 15px;
+  }
+  
+  .user-details {
+    margin-right: 20px;
+  }
+  
+  .user-details img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .post-content {
+    flex-grow: 1;
+  }
+  
+  .post-content h2 {
+    margin-bottom: 10px;
+  }
+  
+  .post-content a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .post-content a:hover {
+    text-decoration: underline;
+  }
+  

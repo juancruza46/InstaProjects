@@ -1,0 +1,60 @@
+/* components/PostCard.css */
+.post-card {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px; /* Adjust padding */
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* Adjust margin */
+  }
+  
+  .post-header img {
+    width: 30px; /* Adjust avatar size */
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px; /* Adjust margin */
+  }
+  
+  .owner-name {
+    font-weight: bold;
+    font-size: 14px; /* Adjust font size */
+  }
+  
+  .post-title {
+    margin-bottom: 8px; /* Adjust margin */
+    font-size: 18px; /* Adjust font size */
+  }
+  
+  .post-content {
+    position: relative;
+    flex: 1;
+  }
+  
+  .post-description,
+  .github-link {
+    font-size: 14px; /* Adjust font size */
+    margin-bottom: 8px; /* Adjust margin */
+  }
+  
+  .edit-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .edit-buttons button {
+    margin-right: 5px;
+  }
+  
+  .editing {
+    background-color: #f0f0f0;
+  }
+  
