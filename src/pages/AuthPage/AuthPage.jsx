@@ -1,11 +1,20 @@
-import SignUpForm from "../../components/SignUpForm/SignUpForm"
-export default function AuthPage(){
-    return (
-        <main>
-            <h1>AuthPage</h1>
-            <SignUpForm />
+// AuthPage.jsx
+import React from 'react';
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
-        </main>
-    )
+const SignUpPage = ({ onSignUp }) => {
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <SignUpForm onSignUp={onSignUp} />
+    </div>
+  );
+};
 
-}
+export default SignUpPage;
+
+
+
+
+
+

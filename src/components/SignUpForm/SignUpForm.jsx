@@ -1,6 +1,9 @@
+// SignUpForm.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const SignUpForm = () => {
+const SignUpForm = ({ onSignUp }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,21 +21,21 @@ const SignUpForm = () => {
     setError('');
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
 
     if (formData.password !== formData.confirm) {
       setError('Passwords do not match');
     } else {
-      // Add logic to handle signup (e.g., API call)
-      // Reset the form after successful signup
-      setFormData({
-        name: '',
-        email: '',
-        password: '',
-        confirm: '',
-      });
-      setError('');
+      try {
+        // Call the onSignUp function passed from AuthPage
+        await onSignUp(formData);
+        // Redirect to login page after successful signup
+        navigate('/auth/login');
+      } catch (error) {
+        console.error('Error during signup:', error);
+        setError('Error during signup. Please try again.');
+      }
     }
   };
 
@@ -61,3 +64,5 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
+
+
