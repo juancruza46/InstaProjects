@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './ViewAllPostsPage.css';
 import PostCard from '../../components/PostCard/PostCard';
 
-const ViewAllPostsPage = () => {
+const ViewAllPostsPage = ({ user }) => {
   const [posts, setPosts] = useState([]);
 
   const handleEdit = async (editedPost) => {
@@ -21,7 +21,7 @@ const ViewAllPostsPage = () => {
         return;
       }
 
-      //update state
+      // Update state
       setPosts((prevPosts) =>
         prevPosts.map((post) => (post._id === editedPost._id ? editedPost : post))
       );
@@ -65,16 +65,20 @@ const ViewAllPostsPage = () => {
         <h1>InstaProjects Feed</h1>
         <hr />
       </div>
-      <div className="posts-container">
-        {posts.map((post) => (
-          <PostCard
-            key={post._id}
-            post={post}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
-        ))}
-      </div>
+      {user ? (
+        <div className="posts-container">
+          {posts.map((post) => (
+            <PostCard
+              key={post._id}
+              post={post}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
+      ) : (
+        <h2>Please sign in to view all posts</h2>
+      )}
     </div>
   );
 };

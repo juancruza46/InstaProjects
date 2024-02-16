@@ -98,19 +98,26 @@ const App = () => {
   return (
     <div className="App">
       <NavBar user={user} onLogout={handleLogout} />
-      {user ? (
-        <Routes>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/add-post" element={<AddPostPage onAddPost={handleAddPost} />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/view-all-posts" element={<ViewAllPostsPage />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/signup" element={<SignUpForm onSignUp={handleSignUp} />} />
-          <Route path="/login" element={<LoginForm setUser={setUser} navigate={navigate} />} />
-        </Routes>
-      )}
+      <Routes>
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/signup" element={<SignUpForm onSignUp={handleSignUp} />} />
+        <Route
+          path="/login"
+          element={<LoginForm setUser={setUser} navigate={navigate} />}
+        />
+        <Route
+          path="/favorites"
+          element={user ? <FavoritesPage user={user} /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/add-post"
+          element={user ? <AddPostPage onAddPost={handleAddPost} user={user} /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/view-all-posts"
+          element={user ? <ViewAllPostsPage user={user} /> : <Navigate to="/login" />}
+        />
+      </Routes>
     </div>
   );
 };
