@@ -12,7 +12,7 @@ export async function login(credentials) {
 
   if (response.ok) {
     const data = await response.json();
-    return data; // Assuming the response contains user data, adjust as needed
+    return data;
   } else {
     throw new Error('Login failed');
   }

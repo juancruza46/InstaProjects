@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
-// Add this line to include the auth routes
+//auth routes
 const authRouter = require('./routes/auth');
 app.use('/api', authRouter);
 
