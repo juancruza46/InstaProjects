@@ -1,15 +1,24 @@
+/* HomePage.css */
+
 .home-page-container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .home-page-title {
-    color: #333;
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .home-page-content {
-    color: #555;
-    font-size: 1.2em;
-  }
+  text-align: center;
+  padding: 20px;
+}
+
+.home-page-title {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.home-page-content {
+  color: #555;
+  font-size: 1.2em;
+}
+
+.coding-freak-gif {
+  max-width: 100%; /* Make sure the image does not exceed its container's width */
+  height: auto; /* Maintain the image's aspect ratio */
+  display: block; /* Remove any extra space below the image */
+  margin: 20px auto; /* Center the image horizontally and add margin for spacing */
+}
