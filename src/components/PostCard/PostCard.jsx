@@ -1,11 +1,12 @@
 // PostCard.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './PostCard.css';
-import { fetchGitHubUserDetails } from '../../api';
+import { fetchGitHubUserDetails, likePost, unlikePost, getPostLikes } from '../../api';
 
-const PostCard = ({ post, onEdit, onDelete }) => {
+const PostCard = ({ post, onEdit, onDelete, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedPost, setEditedPost] = useState({ ...post });
+  const [likes, setLikes] = useState([]);
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -17,6 +18,9 @@ const PostCard = ({ post, onEdit, onDelete }) => {
     const cardHeight = cardRef.current.offsetHeight;
     const fontSize = `${cardHeight / 10}px`; // You can adjust the divisor to control the font size
     cardRef.current.style.setProperty('--font-size', fontSize);
+
+    // Fetch and update likes when the component mounts
+    updateLikes();
   }, [cardRef.current, post]);
 
   const handleEdit = () => {
@@ -37,6 +41,21 @@ const PostCard = ({ post, onEdit, onDelete }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedPost((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleLike = async () => {
+    const newLikesCount = await likePost(post._id, userId);
+    setLikes(newLikesCount);
+  };
+
+  const handleUnlike = async () => {
+    const newLikesCount = await unlikePost(post._id, userId);
+    setLikes(newLikesCount);
+  };
+
+  const updateLikes = async () => {
+    const currentLikes = await getPostLikes(post._id);
+    setLikes(currentLikes.length);
   };
 
   return (
@@ -87,6 +106,11 @@ const PostCard = ({ post, onEdit, onDelete }) => {
               <button onClick={handleEdit}>Edit</button>
               <button onClick={() => onDelete(post._id)}>Delete</button>
             </div>
+            <div className="like-buttons">
+              <button onClick={handleLike}>Like</button>
+              <button onClick={handleUnlike}>Unlike</button>
+              <span>{`${likes} Likes`}</span>
+            </div>
           </>
         )}
       </div>
@@ -95,4 +119,9 @@ const PostCard = ({ post, onEdit, onDelete }) => {
 };
 
 export default PostCard;
+
+
+
+
+
 
