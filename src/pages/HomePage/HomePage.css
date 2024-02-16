@@ -1,24 +1,37 @@
 /* HomePage.css */
 
-.home-page-container {
-  text-align: center;
-  padding: 20px;
+.home-page {
+  background-image: url('https://images.squarespace-cdn.com/content/v1/5769fc401b631bab1addb2ab/1541580611624-TE64QGKRJG8SWAIUS7NS/ke17ZwdGBToddI8pDm48kPoswlzjSVMM-SxOp7CV59BZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI6FXy8c9PWtBlqAVlUS5izpdcIXDZqDYvprRqZ29Pw0o/coding-freak.gif');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.content {
+  text-align: center;
+}
+
+.home-page-title,
+.home-page-content {
+  background-color: rgba(128, 128, 128, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
 .home-page-title {
-  color: #333;
   font-size: 2em;
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .home-page-content {
-  color: #555;
   font-size: 1.2em;
+  font-weight: bold;
 }
 
-.coding-freak-gif {
-  max-width: 100%; /* Make sure the image does not exceed its container's width */
-  height: auto; /* Maintain the image's aspect ratio */
-  display: block; /* Remove any extra space below the image */
-  margin: 20px auto; /* Center the image horizontally and add margin for spacing */
-}
+

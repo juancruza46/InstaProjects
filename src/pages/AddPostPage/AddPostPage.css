@@ -10,6 +10,7 @@
   .add-project-form input,
   .add-project-form textarea {
     margin-bottom: 10px;
+    color: #000;
   }
   
   .add-project-form textarea {
