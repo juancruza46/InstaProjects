@@ -9,6 +9,13 @@ export async function login(credentials) {
     },
     body: JSON.stringify(credentials),
   });
+
+  if (response.ok) {
+    const data = await response.json();
+    return data; // Assuming the response contains user data, adjust as needed
+  } else {
+    throw new Error('Login failed');
+  }
 }
 
 export function signup(formData) {

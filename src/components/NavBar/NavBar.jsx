@@ -1,9 +1,15 @@
-// NavBar.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.css'; // Import your CSS file
 
 const NavBar = ({ user, onLogout }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    onLogout();
+    navigate('/');
+  };
+
   return (
     <nav className="navbar">
       <Link to="/home">Home</Link>
@@ -18,7 +24,7 @@ const NavBar = ({ user, onLogout }) => {
         <>
           <span>Welcome, {user.name}!</span>
           <span className="divider"> | </span>
-          <button onClick={onLogout}>Sign Out</button>
+          <button onClick={handleLogout}>Sign Out</button>
         </>
       ) : (
         <>
@@ -32,5 +38,6 @@ const NavBar = ({ user, onLogout }) => {
 };
 
 export default NavBar;
+
 
 

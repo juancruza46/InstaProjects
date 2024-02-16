@@ -16,9 +16,9 @@ const LoginForm = ({ setUser }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-
+  
     try {
-      const user = await usersService.login(credentials);
+      const { user } = await usersService.login(credentials);
       setUser(user);
     } catch (err) {
       console.error('Error during login:', err);

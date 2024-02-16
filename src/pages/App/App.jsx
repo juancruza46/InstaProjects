@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import HomePage from '../HomePage/HomePage';
@@ -14,10 +14,10 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (user && token) {
       navigate('/home');
     }
-  }, [user, navigate]);
+  }, [user, token, navigate]);
 
   const handleAddPost = async (newPost) => {
     try {
@@ -58,10 +58,7 @@ const App = () => {
         const { user, token } = await response.json();
         setUser(user);
         setToken(token);
-
-        if (navigate) {
-          navigate('/home');
-        }
+        navigate('/home');
       } else {
         const errorData = await response.json();
         console.error('Login failed:', errorData.message || 'Unknown error');
@@ -104,7 +101,8 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/signup" element={<SignUpForm onSignUp={handleSignUp} />} />
-        <Route path="/login" element={<LoginForm setUser={setUser} />} />
+        {/* Pass 'navigate' as a prop to the LoginForm component */}
+        <Route path="/login" element={<LoginForm setUser={setUser} navigate={navigate} />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/add-post" element={<AddPostPage onAddPost={handleAddPost} />} />
         <Route path="/view-all-posts" element={<ViewAllPostsPage />} />
@@ -114,6 +112,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 
