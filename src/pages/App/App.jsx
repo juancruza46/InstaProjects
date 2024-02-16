@@ -1,8 +1,7 @@
-// App.jsx
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
-import LoginForm from '../../components/LoginForm/LoginForm'; // Import the LoginForm component
+import LoginForm from '../../components/LoginForm/LoginForm';
 import HomePage from '../HomePage/HomePage';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import AddPostPage from '../AddPostPage/AddPostPage';
@@ -11,6 +10,7 @@ import NavBar from '../../components/NavBar/NavBar';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const App = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(newPost),
       });
@@ -42,7 +43,7 @@ const App = () => {
 
   const handleLogin = async (email, password) => {
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,12 +53,13 @@ const App = () => {
           password,
         }),
       });
-  
+
       if (response.ok) {
-        const userData = await response.json();
-        setUser(userData);
-  
-        if (window.location.pathname !== '/home') {
+        const { user, token } = await response.json();
+        setUser(user);
+        setToken(token);
+
+        if (navigate) {
           navigate('/home');
         }
       } else {
@@ -68,10 +70,10 @@ const App = () => {
       console.error('Error during login:', error);
     }
   };
-  
 
   const handleLogout = () => {
     setUser(null);
+    setToken(null);
     navigate('/');
   };
 
@@ -87,7 +89,7 @@ const App = () => {
 
       if (response.ok) {
         console.log('Signup successful');
-        handleLogin(formData.email, formData.password); // Automatically log in after successful signup
+        handleLogin(formData.email, formData.password);
       } else {
         console.error('Error during signup:', response.statusText);
       }
@@ -101,29 +103,18 @@ const App = () => {
       <NavBar user={user} onLogout={handleLogout} />
       <Routes>
         <Route path="/home" element={<HomePage />} />
-        <Route
-          path="/signup"
-          element={<SignUpForm onSignUp={handleSignUp} />}
-        />
-        <Route
-          path="/login"
-          element={<LoginForm onLogin={handleLogin} />}
-        />
+        <Route path="/signup" element={<SignUpForm onSignUp={handleSignUp} />} />
+        <Route path="/login" element={<LoginForm setUser={setUser} />} />
         <Route path="/favorites" element={<FavoritesPage />} />
-        <Route
-          path="/add-post"
-          element={<AddPostPage onAddPost={handleAddPost} />}
-        />
-        <Route
-          path="/view-all-posts"
-          element={<ViewAllPostsPage />}
-        />
+        <Route path="/add-post" element={<AddPostPage onAddPost={handleAddPost} />} />
+        <Route path="/view-all-posts" element={<ViewAllPostsPage />} />
       </Routes>
     </div>
   );
 };
 
 export default App;
+
 
 
 

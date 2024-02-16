@@ -1,19 +1,16 @@
 // LoginForm.jsx
 import React, { useState } from 'react';
+import * as usersService from '../../utilities/users-service';
 
-const LoginForm = ({ onLogin }) => {
-  const [formData, setFormData] = useState({
+const LoginForm = ({ setUser }) => {
+  const [credentials, setCredentials] = useState({
     email: '',
     password: '',
   });
-
   const [error, setError] = useState('');
 
   const handleChange = (evt) => {
-    setFormData({
-      ...formData,
-      [evt.target.name]: evt.target.value,
-    });
+    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
     setError('');
   };
 
@@ -21,10 +18,11 @@ const LoginForm = ({ onLogin }) => {
     evt.preventDefault();
 
     try {
-      await onLogin(formData.email, formData.password);
-    } catch (error) {
-      console.error('Error during login:', error);
-      setError('Invalid email or password. Please try again.');
+      const user = await usersService.login(credentials);
+      setUser(user);
+    } catch (err) {
+      console.error('Error during login:', err);
+      setError('Log In Failed - Try Again');
     }
   };
 
@@ -33,12 +31,10 @@ const LoginForm = ({ onLogin }) => {
       <div className="form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
           <label>Password</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-          <button type="submit">
-            LOGIN
-          </button>
+          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          <button type="submit">LOG IN</button>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>
@@ -47,5 +43,4 @@ const LoginForm = ({ onLogin }) => {
 };
 
 export default LoginForm;
-
 
