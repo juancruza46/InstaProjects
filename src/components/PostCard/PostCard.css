@@ -51,8 +51,8 @@
   font-size: 14px;
   margin-bottom: 12px;
   color: #373232;
-  text-align: center; /* Add this line */
-  width: 100%; /* Add this line */
+  text-align: center;
+  width: 100%; 
 }
 
 .buttons-container {
@@ -81,15 +81,15 @@
 .like-buttons {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Add this line */
+  justify-content: flex-end;
 }
 
 .like-buttons button {
-  margin-left: 10px; /* Adjust this margin as needed */
+  margin-left: 10px;
 }
 
 .like-buttons span {
-  margin-left: 10px; /* Adjust this margin as needed */
+  margin-left: 10px;
   font-size: 14px;
   color: #373232;
 }
@@ -100,20 +100,19 @@
 }
 
 .edit-buttons button {
-  margin-right: 10px; /* Adjust this margin as needed */
+  margin-right: 10px;
 }
 
 .edit-buttons button:last-child {
-  margin-right: 0; /* Remove the margin for the last button */
+  margin-right: 0;
 }
 
 .like-buttons span {
   display: inline-block;
-  padding: 8px 12px; /* Adjust padding as needed */
-  background-color: #0e5096; /* Background color similar to a button */
+  padding: 8px 12px;
+  background-color: #0e5096;
   border-radius: 5px;
   font-size: 14px;
   color: #fff;
-  margin-left: 10px; /* Adjust margin as needed */
+  margin-left: 10px;
 }
-

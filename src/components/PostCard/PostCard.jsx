@@ -109,7 +109,7 @@ const PostCard = ({ post, onEdit, onDelete, userId }) => {
             <div className="like-buttons">
               <button onClick={handleLike}>Like</button>
               <button onClick={handleUnlike}>Unlike</button>
-              <span>{`${likes} Likes`}</span>
+              <span>{`${likes} ❤️ `}</span>
             </div>
           </>
         )}
